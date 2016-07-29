@@ -2,7 +2,7 @@
 
 Zabbix 3.x template for stats collection from BIND 9 named service
 
-## How to install (tested on CentOS):
+## How to install (tested on CentOS 6.8):
 * Import the xml template into Zabbix 3
 * Copy named-stats.sh to /usr/local/share/zabbix/externalscripts/ (or another dir & change path into named-stats.sh)
 * Copy userparameter_named.conf to /etc/zabbix/zabbix_agentd.d/
