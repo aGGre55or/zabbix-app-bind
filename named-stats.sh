@@ -1,18 +1,14 @@
 #!/bin/bash
 # oev <offer4job@outlook.com>; 27.01.2017
 
-if [[ -z "$1" ]]; then
-     exit 1
-fi
+if [[ -z "$1" ]]; then exit 1; fi
 
 RNDC_BIN=/usr/sbin/rndc
 STATS='/var/named/data/named_stats.txt'
 METRIC="$1"
 
 rm -f $STATS
-if ! $RNDC_BIN stats; then
-    exit 1
-fi
+if ! $RNDC_BIN stats; then exit 1; fi
 
 if [ -s ${STATS} ]; then
 
