@@ -43,5 +43,28 @@ Zabbix 3.x template for stats collection from Nginx 1.x service
                 }
         }
 ```
+# App PHP-FPM
 
+Zabbix 3.x template for stats collection from PHP-FPM 5.6.x and later service
 
+## How to install (tested on CentOS 6.8):
+* Import the xml template into Zabbix 3
+* Copy php-fpm-stats.sh to /usr/local/share/zabbix/externalscripts/ (or another dir & change path into php-fpm-stats.sh)
+* Copy userparameter_php-fpm.conf to /etc/zabbix/zabbix_agentd.d/
+* Configure PHP-FPM status for your pool (ex. /etc/php-fpm.d/www.conf)
+```
+pm.status_path = /php
+```
+* Configure PHP-FPM status page for your web-server (ex. /etc/nginx/nginx.conf)
+```
+        # php-fpm status page
+        location ~ ^/(php)$ {
+              access_log off;
+              allow 127.0.0.1;
+              allow 192.168.0/24;
+              deny all;
+              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+              include fastcgi_params;
+              fastcgi_pass socket;
+        }
+```
